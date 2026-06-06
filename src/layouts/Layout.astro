@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = '365 The Travel Cafe - Your Neighborhood Coffee Sanctuary', 
+	description = 'Enjoy expertly crafted coffee, warm inviting vibes, and delicious food at 365 The Travel Cafe.' 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+	</head>
+	<body class="flex flex-col min-h-screen text-cafe-text antialiased selection:bg-cafe-accent selection:text-cafe-charcoal">
+		<slot />
+		<WhatsAppButton />
+	</body>
+</html>

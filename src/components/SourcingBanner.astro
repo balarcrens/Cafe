@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import sourcingBg from "../assets/banner_sourcing.webp";
+---
+
+<section
+  class="relative py-28 flex items-center justify-center overflow-hidden"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={sourcingBg}
+      alt="Lush green coffee branches with ripe red coffee cherries in sunlight"
+      class="w-full h-full object-cover"
+      quality="high"
+    />
+    <!-- Rich overlay matching theme -->
+    <div class="absolute inset-0 overlay-green"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2
+      class="text-3xl sm:text-5xl text-white font-serif text-white leading-[1.25] font-normal mb-8 max-w-3xl mx-auto tracking-wide"
+    >
+      We source our milk and dairy products from nearby family-owned farms.
+    </h2>
+    <a
+      href="#about"
+      class="inline-flex items-center justify-center px-8 py-3.5 bg-cafe-medium hover:bg-cafe-dark text-white text-sm font-semibold tracking-wider uppercase rounded-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+    >
+      Learn More
+    </a>
+  </div>
+</section>

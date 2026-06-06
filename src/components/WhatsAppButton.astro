@@ -1,0 +1,41 @@
+---
+---
+<div class="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center group">
+  <!-- Tooltip (Desktop only) -->
+  <span class="mr-3 scale-0 origin-right transition-all duration-300 group-hover:scale-100 hidden md:block bg-cafe-charcoal text-white text-xs px-3 py-2 rounded-md shadow-lg border border-cafe-accent/20 font-sans tracking-wide">
+    Chat with us on WhatsApp
+  </span>
+  
+  <!-- Floating Button -->
+  <a
+    href="https://wa.me/918141017971"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="relative flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-[0_0_20px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 active:scale-95"
+    aria-label="Chat on WhatsApp"
+  >
+    <!-- Outer pulsing ring -->
+    <span class="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping-slow"></span>
+    
+    <!-- SVG Icon -->
+    <svg class="w-7 h-7 fill-current z-10" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.62.963 3.223 1.48 4.966 1.481 5.432.003 9.85-4.412 9.854-9.845.002-2.631-1.02-5.105-2.879-6.967-1.858-1.862-4.33-2.885-6.964-2.887-5.438 0-9.859 4.417-9.863 9.852-.001 1.777.464 3.512 1.348 5.035l-.98 3.578 3.668-.962zm10.74-7.067c-.244-.122-1.45-.715-1.676-.798-.225-.082-.388-.122-.55.122-.162.244-.63.798-.77.96-.14.162-.28.18-.524.057-.243-.122-1.026-.378-1.954-1.206-.723-.645-1.212-1.442-1.353-1.686-.14-.244-.015-.376.107-.497.11-.11.244-.286.366-.43.12-.14.162-.24.243-.404.08-.162.04-.304-.02-.426-.06-.122-.55-1.326-.75-1.81-.196-.475-.395-.41-.55-.418-.14-.007-.305-.007-.468-.007-.163 0-.43.06-.653.303-.225.244-.857.837-.857 2.04 0 1.204.876 2.368.997 2.53.12.163 1.722 2.63 4.172 3.69.582.253 1.036.404 1.39.518.586.185 1.118.159 1.54.097.47-.069 1.45-.592 1.653-1.163.204-.572.204-1.062.142-1.163-.06-.102-.224-.163-.468-.286z"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  @keyframes pingSlow {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+  .animate-ping-slow {
+    animation: pingSlow 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import InfoBar from '../components/InfoBar.astro';
+import About from '../components/About.astro';
+import Promo from '../components/Promo.astro';
+import ExploreFoods from '../components/ExploreFoods.astro';
+import SourcingBanner from '../components/SourcingBanner.astro';
+import BookingForm from '../components/BookingForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="365 The Travel Cafe - Your Neighborhood Sanctuary for Exquisite Coffee">
+	<!-- Navigation Header -->
+	<Navbar />
+
+	<main class="flex-grow">
+		<!-- Hero Section -->
+		<Hero />
+
+		<!-- Contact & Hours Info Bar -->
+		<InfoBar />
+
+		<!-- About Us Section -->
+		<About />
+
+		<!-- Rich Flavor Promo Section -->
+		<Promo />
+
+		<!-- Food Explorer Grid -->
+		<ExploreFoods />
+
+		<!-- Sourcing Dairy Banner -->
+		<SourcingBanner />
+
+		<!-- Reservation Booking Form -->
+		<BookingForm />
+	</main>
+
+	<!-- Footer Details -->
+	<Footer />
+</Layout>

@@ -1,0 +1,252 @@
+---
+import { Image } from 'astro:assets';
+import espressoImg from '../assets/product1.png';
+import brewedImg from '../assets/product2.png';
+import teaImg from '../assets/product3.png';
+import pastryImg from '../assets/product4.png';
+
+const foodCategories = [
+  { id: 'espresso', name: 'Espresso-based', image: espressoImg, desc: 'Rich espresso shots, lattes, and cappuccinos.' },
+  { id: 'brewed', name: 'Brewed Coffee', image: brewedImg, desc: 'Drip coffee, cold brews, and pour-overs.' },
+  { id: 'tea', name: 'Tea Selection', image: teaImg, desc: 'Premium matcha, loose-leaf teas, and chai.' },
+  { id: 'pastry', name: 'Pastries & Desserts', image: pastryImg, desc: 'Freshly baked croissants, tarts, and scones.' }
+];
+
+const menuData = {
+  espresso: [
+    { name: 'Espresso', price: '$3.50', desc: 'Double shot of our signature micro-roasted espresso.' },
+    { name: 'Cortado', price: '$4.00', desc: 'Equal parts espresso and warm textured milk.' },
+    { name: 'Flat White', price: '$4.50', desc: 'Double shot of espresso with thin layer of microfoam.' },
+    { name: 'Caffe Latte', price: '$4.75', desc: 'Espresso and steamed milk with a light layer of foam.' },
+    { name: 'Cappuccino', price: '$4.50', desc: 'Espresso, steamed milk, and heavy layer of velvety foam.' }
+  ],
+  brewed: [
+    { name: 'House Drip', price: '$3.00', desc: 'Medium roast drip coffee with notes of chocolate and hazelnut.' },
+    { name: 'Pour Over', price: '$5.00', desc: 'Single-origin beans brewed meticulously by hand.' },
+    { name: 'Cold Brew', price: '$4.25', desc: 'Steeped cold for 18 hours, smooth and low acidity.' },
+    { name: 'Nitro Cold Brew', price: '$4.75', desc: 'Infused with nitrogen for a rich, creamy head.' }
+  ],
+  tea: [
+    { name: 'Ceremonial Matcha Latte', price: '$5.00', desc: 'Organic stone-ground green tea whisked with steamed milk.' },
+    { name: 'Chai Tea Latte', price: '$4.75', desc: 'Spiced black tea blend infused with vanilla and steamed milk.' },
+    { name: 'Organic Loose Leaf', price: '$3.75', desc: 'Choice of Jasmine Green, Earl Grey, or Peppermint.' },
+    { name: 'Iced Peach Hibiscus', price: '$4.00', desc: 'Refreshing botanical tea, unsweetened or sweetened.' }
+  ],
+  pastry: [
+    { name: 'Butter Croissant', price: '$3.50', desc: 'Classic flaky, buttery French pastry baked fresh daily.' },
+    { name: 'Almond Croissant', price: '$4.00', desc: 'Twice-baked croissant with sweet almond frangipane filling.' },
+    { name: 'Seasonal Fruit Tart', price: '$4.50', desc: 'Sweet pastry shell with pastry cream and fresh berries.' },
+    { name: 'Blueberry Scone', price: '$3.50', desc: 'Crumbly house scone filled with organic blueberries.' }
+  ]
+};
+---
+
+<section id="menu" class="py-24 bg-white scroll-mt-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <!-- Title -->
+    <span class="text-xs uppercase tracking-widest text-[#8b3d1f] font-bold mb-3 block">From Our Kitchen</span>
+    <h2 class="text-3xl sm:text-5xl font-serif text-cafe-charcoal font-medium mb-12">Explore our Foods</h2>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      {foodCategories.map((cat) => (
+        <div class="group flex flex-col items-center bg-white rounded-lg p-2 transition-all duration-300 hover:shadow-xl">
+          <!-- Image Container with nice smooth zoom on hover -->
+          <div class="w-full h-64 rounded-xl overflow-hidden shadow-md mb-6 relative">
+            <Image
+              src={cat.image} 
+              alt={cat.name} 
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              quality="high"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-cafe-charcoal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <!-- Label -->
+          <h3 class="text-xl font-serif text-cafe-accent font-semibold mb-2 group-hover:text-cafe-medium transition-colors">
+            {cat.name}
+          </h3>
+          <p class="text-sm text-cafe-text/80 font-sans max-w-[200px] text-center font-light leading-relaxed">
+            {cat.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Button -->
+    <button 
+      id="open-menu-modal"
+      class="inline-flex items-center justify-center px-10 py-4 bg-cafe-accent hover:bg-cafe-medium text-white text-sm font-semibold tracking-wider uppercase rounded-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+    >
+      See Full Menu
+    </button>
+
+  </div>
+
+  <!-- Interactive Full Menu Modal Backdrop -->
+  <div 
+    id="menu-modal" 
+    class="fixed inset-0 z-100 hidden items-center justify-center bg-cafe-charcoal/60 backdrop-blur-md p-4 transition-opacity duration-300"
+  >
+    <!-- Modal Content Container -->
+    <div 
+      class="bg-white w-full max-w-5xl max-h-[85vh] rounded-lg shadow-2xl flex flex-col overflow-hidden transform scale-95 opacity-0 transition-all duration-300"
+      id="menu-modal-container"
+    >
+      <!-- Header -->
+      <div class="px-6 py-4 bg-cafe-dark flex items-center justify-between text-white border-b border-cafe-medium/20">
+        <div class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cafe-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+          </svg>
+          <span class="text-xl font-serif tracking-wider font-semibold">365 The Travel Cafe Full Menu</span>
+        </div>
+        <button id="close-menu-modal" class="text-white/80 hover:text-white focus:outline-none transition-colors" aria-label="Close modal">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Grid Body -->
+      <div class="flex-1 overflow-y-auto p-6 sm:p-8 bg-cafe-light/20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          
+          <!-- Column 1: Drinks -->
+          <div class="space-y-10">
+            <!-- Espresso-based -->
+            <div>
+              <h4 class="text-2xl font-serif text-cafe-charcoal border-b border-cafe-accent/30 pb-2 mb-4 font-semibold">Espresso-based</h4>
+              <ul class="space-y-4">
+                {menuData.espresso.map(item => (
+                  <li class="flex flex-col text-left">
+                    <div class="flex justify-between items-baseline">
+                      <span class="font-medium text-cafe-charcoal text-base">{item.name}</span>
+                      <span class="font-semibold text-cafe-medium text-sm">{item.price}</span>
+                    </div>
+                    <span class="text-xs text-cafe-text/70 mt-1 font-light leading-relaxed">{item.desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Brewed Coffee -->
+            <div>
+              <h4 class="text-2xl font-serif text-cafe-charcoal border-b border-cafe-accent/30 pb-2 mb-4 font-semibold">Brewed Coffee</h4>
+              <ul class="space-y-4">
+                {menuData.brewed.map(item => (
+                  <li class="flex flex-col text-left">
+                    <div class="flex justify-between items-baseline">
+                      <span class="font-medium text-cafe-charcoal text-base">{item.name}</span>
+                      <span class="font-semibold text-cafe-medium text-sm">{item.price}</span>
+                    </div>
+                    <span class="text-xs text-cafe-text/70 mt-1 font-light leading-relaxed">{item.desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Column 2: Teas and Pastries -->
+          <div class="space-y-10">
+            <!-- Tea Selection -->
+            <div>
+              <h4 class="text-2xl font-serif text-cafe-charcoal border-b border-cafe-accent/30 pb-2 mb-4 font-semibold">Tea Selection</h4>
+              <ul class="space-y-4">
+                {menuData.tea.map(item => (
+                  <li class="flex flex-col text-left">
+                    <div class="flex justify-between items-baseline">
+                      <span class="font-medium text-cafe-charcoal text-base">{item.name}</span>
+                      <span class="font-semibold text-cafe-medium text-sm">{item.price}</span>
+                    </div>
+                    <span class="text-xs text-cafe-text/70 mt-1 font-light leading-relaxed">{item.desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Pastries -->
+            <div>
+              <h4 class="text-2xl font-serif text-cafe-charcoal border-b border-cafe-accent/30 pb-2 mb-4 font-semibold">Pastries & Desserts</h4>
+              <ul class="space-y-4">
+                {menuData.pastry.map(item => (
+                  <li class="flex flex-col text-left">
+                    <div class="flex justify-between items-baseline">
+                      <span class="font-medium text-cafe-charcoal text-base">{item.name}</span>
+                      <span class="font-semibold text-cafe-medium text-sm">{item.price}</span>
+                    </div>
+                    <span class="text-xs text-cafe-text/70 mt-1 font-light leading-relaxed">{item.desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-6 py-4 bg-white border-t border-cafe-accent/15 flex justify-end">
+        <a 
+          href="#booking" 
+          id="modal-book-cta"
+          class="px-6 py-2.5 bg-cafe-dark hover:bg-cafe-medium text-white text-xs font-semibold uppercase tracking-wider rounded-sm transition-all duration-300"
+        >
+          Book a Table
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const openBtn = document.getElementById('open-menu-modal');
+  const closeBtn = document.getElementById('close-menu-modal');
+  const modal = document.getElementById('menu-modal');
+  const container = document.getElementById('menu-modal-container');
+  const bookCta = document.getElementById('modal-book-cta');
+
+  function openModal() {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    
+    // Trigger transition animation
+    setTimeout(() => {
+      container?.classList.remove('scale-95', 'opacity-0');
+      container?.classList.add('scale-100', 'opacity-100');
+    }, 10);
+    
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeModal() {
+    container?.classList.remove('scale-100', 'opacity-100');
+    container?.classList.add('scale-95', 'opacity-0');
+    
+    setTimeout(() => {
+      modal?.classList.remove('flex');
+      modal?.classList.add('hidden');
+    }, 300);
+    
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  bookCta?.addEventListener('click', closeModal);
+
+  // Close modal when clicking outside content container
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close modal on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>
