@@ -36,3 +36,16 @@
 .overlay-green {
   background: linear-gradient(to bottom, rgba(34, 14, 6, 0.65), rgba(34, 14, 6, 0.8));
 }
+
+/* GPU Acceleration for smooth animations */
+.gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+.will-change-transform {
+  transform: translateZ(0);
+  will-change: transform;
+}

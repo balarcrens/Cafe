@@ -4,23 +4,23 @@ import circle1 from '../assets/about_circle1.webp';
 import circle2 from '../assets/about_circle2.webp';
 ---
 
-<section id="about" class="py-24 bg-white overflow-hidden scroll-mt-12">
+<section id="about" class="about-section py-24 bg-white overflow-hidden scroll-mt-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
       
-      <!-- Overlapping Circular Images Collage -->
+      <!-- Overlapping Circular Images Collage (100% Responsive Percentage-based) -->
       <div class="relative flex justify-center lg:justify-start px-4 sm:px-8 lg:px-0">
-        <!-- Combined container for collage to control bounding offsets -->
-        <div class="relative w-[320px] h-[320px] sm:w-[440px] sm:h-[440px]">
+        <!-- Main Collage Container -->
+        <div class="relative w-full max-w-[320px] sm:max-w-[460px] aspect-square">
           
           <!-- Beige Backdrop Circle 1 (Under Image 1, shifted bottom-left) -->
-          <div class="absolute bottom-12 left-0 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] rounded-full bg-cafe-light/50 -z-10"></div>
+          <div class="about-bg-circle absolute bottom-[6%] left-0 w-[64%] h-[64%] rounded-full bg-cafe-light -z-10 gpu-accelerate"></div>
           
           <!-- Beige Backdrop Circle 2 (Under Image 2, shifted top-right) -->
-          <div class="absolute top-12 right-0 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] rounded-full bg-cafe-light/30 -z-10"></div>
+          <div class="about-bg-circle absolute top-[6%] right-0 w-[64%] h-[64%] rounded-full bg-cafe-light -z-10 gpu-accelerate"></div>
           
           <!-- Image 1 Container: Top-Left (Latte Art) -->
-          <div class="absolute top-0 left-4 w-[210px] h-[210px] sm:w-[290px] sm:h-[290px] rounded-full border-8 border-white shadow-xl z-10 transition-transform duration-500 hover:scale-102">
+          <div class="about-img1 absolute top-0 left-[6%] w-[68%] h-[68%] rounded-full border-4 sm:border-8 border-white shadow-xl z-10 transition-transform duration-500 hover:scale-102 gpu-accelerate">
             <Image 
               src={circle1} 
               alt="Premium latte art in white ceramic cup" 
@@ -29,11 +29,11 @@ import circle2 from '../assets/about_circle2.webp';
             />
           </div>
 
-          <!-- Concentric dotted ring around Image 2 (shifted for centering offset) -->
-          <div class="absolute bottom-2 right-2 w-[186px] h-[186px] sm:w-[246px] sm:h-[246px] rounded-full border-2 border-dashed border-cafe-accent/80 z-20 pointer-events-none"></div>
+          <!-- Concentric dotted ring around Image 2 (white dotted outline matching image) -->
+          <div class="about-ring absolute bottom-[1%] right-[1%] w-[58%] h-[58%] rounded-full border-2 border-dotted border-white z-20 pointer-events-none will-change-transform"></div>
 
           <!-- Image 2 Container: Bottom-Right (Clinking Cups) -->
-          <div class="absolute bottom-4 right-4 w-[170px] h-[170px] sm:w-[230px] sm:h-[230px] rounded-full border-8 border-white shadow-xl z-30 transition-transform duration-500 hover:scale-105">
+          <div class="about-img2 absolute bottom-[4%] right-[4%] w-[52%] h-[52%] rounded-full border-4 sm:border-8 border-white shadow-xl z-35 transition-transform duration-500 hover:scale-105 gpu-accelerate">
             <Image 
               src={circle2} 
               alt="Friends clinking coffee cups at the cafe" 
@@ -47,10 +47,10 @@ import circle2 from '../assets/about_circle2.webp';
 
       <!-- About Content -->
       <div class="flex flex-col text-left max-w-xl">
-        <h2 class="text-3xl sm:text-[40px] font-serif text-cafe-charcoal font-semibold leading-[1.25] mb-6 tracking-normal">
+        <h2 class="about-heading text-3xl sm:text-[40px] font-serif text-cafe-charcoal font-semibold leading-[1.25] mb-6 tracking-normal gpu-accelerate">
           Enjoy expertly crafted<br class="hidden sm:inline" /> beverages made from the finest<br class="hidden sm:inline" /> coffee beans.
         </h2>
-        <p class="text-base sm:text-lg font-sans text-cafe-text mb-8 leading-relaxed font-light">
+        <p class="about-para text-base sm:text-lg font-sans text-cafe-text mb-8 leading-relaxed font-light gpu-accelerate">
           Find delightful treats, and warm, inviting vibes.
         </p>
 
@@ -58,32 +58,32 @@ import circle2 from '../assets/about_circle2.webp';
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-8">
           
           <!-- Value 1 -->
-          <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <div class="about-value flex items-center space-x-3 gpu-accelerate">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span class="text-base font-sans font-medium text-cafe-charcoal">Premium Quality</span>
           </div>
 
           <!-- Value 2 -->
-          <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <div class="about-value flex items-center space-x-3 gpu-accelerate">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span class="text-base font-sans font-medium text-cafe-charcoal">Community Focused</span>
           </div>
 
           <!-- Value 3 -->
-          <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <div class="about-value flex items-center space-x-3 gpu-accelerate">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span class="text-base font-sans font-medium text-cafe-charcoal">Cozy Atmosphere</span>
           </div>
 
           <!-- Value 4 -->
-          <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <div class="about-value flex items-center space-x-3 gpu-accelerate">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cafe-medium flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span class="text-base font-sans font-medium text-cafe-charcoal">Eco-Friendly Practices</span>
@@ -95,3 +95,86 @@ import circle2 from '../assets/about_circle2.webp';
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    // Continuous rotation of the dotted ring
+    gsap.to(".about-ring", {
+      rotation: 360,
+      duration: 35,
+      repeat: -1,
+      ease: "none"
+    });
+
+    // Scale up collage images and backdrops
+    gsap.from(".about-bg-circle", {
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top 75%"
+      },
+      scale: 0,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 1.2,
+      ease: "power2.out"
+    });
+
+    gsap.from(".about-img1", {
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top 75%"
+      },
+      xPercent: -20,
+      yPercent: -20,
+      scale: 0.8,
+      opacity: 0,
+      duration: 1.4,
+      ease: "power3.out"
+    });
+
+    gsap.from(".about-img2", {
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top 72%"
+      },
+      xPercent: 15,
+      yPercent: 15,
+      scale: 0.85,
+      opacity: 0,
+      duration: 1.4,
+      ease: "power3.out"
+    });
+
+    // Stagger text reveals
+    gsap.from(".about-heading, .about-para", {
+      scrollTrigger: {
+        trigger: ".about-heading",
+        start: "top 80%"
+      },
+      opacity: 0,
+      y: 30,
+      stagger: 0.1,
+      duration: 1,
+      ease: "power2.out"
+    });
+
+    gsap.from(".about-value", {
+      scrollTrigger: {
+        trigger: ".about-value",
+        start: "top 85%"
+      },
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+  }
+</script>

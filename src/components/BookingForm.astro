@@ -1,19 +1,20 @@
 ---
+// BookingForm.astro
 ---
 
-<section id="booking" class="py-24 bg-white scroll-mt-12">
+<section id="booking" class="booking-section py-24 bg-white scroll-mt-12 overflow-hidden">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     
     <!-- Title -->
-    <span class="text-xs uppercase tracking-widest text-cafe-medium font-bold mb-3 block">Reservation</span>
-    <h2 class="text-3xl sm:text-5xl font-serif text-cafe-charcoal font-medium mb-12">Book Your Table</h2>
+    <span class="booking-title text-xs uppercase tracking-widest text-cafe-medium font-bold mb-3 block">Reservation</span>
+    <h2 class="booking-heading text-3xl sm:text-5xl font-serif text-cafe-charcoal font-medium mb-12">Book Your Table</h2>
 
     <!-- Booking Form -->
     <form id="reservation-form" class="space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         <!-- Name -->
-        <div class="text-left">
+        <div class="booking-field text-left">
           <input 
             type="text" 
             name="name" 
@@ -25,7 +26,7 @@
         </div>
 
         <!-- Email -->
-        <div class="text-left">
+        <div class="booking-field text-left">
           <input 
             type="email" 
             name="email" 
@@ -37,7 +38,7 @@
         </div>
 
         <!-- Date -->
-        <div class="text-left relative">
+        <div class="booking-field text-left relative">
           <input 
             type="date" 
             name="date" 
@@ -48,7 +49,7 @@
         </div>
 
         <!-- Time -->
-        <div class="text-left">
+        <div class="booking-field text-left">
           <input 
             type="time" 
             name="time" 
@@ -59,7 +60,7 @@
         </div>
 
         <!-- People count -->
-        <div class="text-left">
+        <div class="booking-field text-left">
           <select 
             name="people" 
             id="booking-people" 
@@ -76,8 +77,8 @@
           </select>
         </div>
 
-        <!-- Submit Button -->
-        <div>
+        <!-- Submit Button (Centered & balanced visually spanning 2 columns) -->
+        <div class="booking-field md:col-span-2 text-center">
           <button 
             type="submit" 
             class="w-full py-4 bg-cafe-dark hover:bg-cafe-medium text-white text-sm font-semibold tracking-wider uppercase rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
@@ -130,6 +131,41 @@
 </style>
 
 <script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    // Form headers reveal
+    gsap.from(".booking-title, .booking-heading", {
+      scrollTrigger: {
+        trigger: ".booking-section",
+        start: "top 80%"
+      },
+      opacity: 0,
+      y: 25,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+
+    // Form inputs reveal
+    gsap.from(".booking-field", {
+      scrollTrigger: {
+        trigger: "#reservation-form",
+        start: "top 85%"
+      },
+      opacity: 0,
+      y: 30,
+      stagger: 0.1,
+      duration: 1,
+      ease: "power3.out"
+    });
+  }
+
   const form = document.getElementById('reservation-form') as HTMLFormElement;
   const toast = document.getElementById('booking-toast');
   const toastMsg = document.getElementById('toast-message');

@@ -1,0 +1,377 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import circle1 from "../assets/about_circle1.webp";
+import circle2 from "../assets/about_circle2.webp";
+---
+
+<Layout
+  title="About Us - Cafe"
+  description="Discover our journey, coffee philosophy, and our commitment to sourcing local dairy and micro-roasted beans."
+>
+  <Navbar />
+
+  <main class="flex-grow pt-18">
+    <!-- Page Header Banner -->
+    <section
+      class="about-header relative bg-cafe-charcoal py-24 text-white text-center overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-cafe-dark/25 to-cafe-charcoal/90 z-0"
+      >
+      </div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+        <span
+          class="about-header-tag opacity-0 text-xs uppercase tracking-widest text-cafe-accent font-bold mb-3 block"
+          >Since 2018</span
+        >
+        <h1
+          class="about-header-title opacity-0 text-4xl sm:text-6xl font-serif text-white mb-6"
+        >
+          Our Journey & Philosophy
+        </h1>
+        <p
+          class="about-header-desc opacity-0 text-base sm:text-lg text-white/80 font-sans font-light max-w-xl mx-auto leading-relaxed"
+        >
+          Welcome to Cafe, where every cup is a labor of love, crafted with
+          precision and served in a warm, welcoming sanctuary.
+        </p>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="about-story-section py-20 bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <!-- Text -->
+          <div class="about-story-content flex flex-col text-left">
+            <span
+              class="text-xs uppercase tracking-widest text-[#8b3d1f] font-bold mb-3 block"
+              >Our Story</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-serif text-cafe-charcoal font-semibold mb-6"
+            >
+              How it all began
+            </h2>
+            <div
+              class="space-y-6 text-cafe-text text-sm sm:text-base font-light leading-relaxed"
+            >
+              <p>
+                Cafe was founded on a simple belief: that coffee is more than
+                just a morning routine. It is an art form, a sensory journey,
+                and a powerful catalyst for community. We set out to create a
+                peaceful, inviting space where coffee lovers could escape the
+                rush of daily life.
+              </p>
+              <p>
+                From humble beginnings, we have partnered with micro-roasters
+                who source directly from ethical, sustainable single-origin
+                farms. Every bean is carefully evaluated, roasted to perfection,
+                and prepared by baristas who care deeply about the craft.
+              </p>
+            </div>
+          </div>
+
+          <!-- Circular collage layout -->
+          <div class="relative flex justify-center lg:justify-end">
+            <div
+              class="relative w-full max-w-[280px] sm:max-w-[380px] aspect-square"
+            >
+              <div
+                class="about-story-bg absolute bottom-[10%] left-0 w-[60%] h-[60%] rounded-full bg-cafe-light/40 -z-10"
+              >
+              </div>
+              <div
+                class="about-story-img1 absolute top-0 left-[5%] w-[64%] h-[64%] rounded-full border-4 sm:border-8 border-white shadow-lg z-10"
+              >
+                <Image
+                  src={circle1}
+                  alt="Espresso crafting"
+                  class="w-full h-full object-cover rounded-full"
+                />
+              </div>
+              <div
+                class="about-story-img2 absolute bottom-[5%] right-[5%] w-[50%] h-[50%] rounded-full border-4 sm:border-8 border-white shadow-lg z-25"
+              >
+                <Image
+                  src={circle2}
+                  alt="People clinking cups"
+                  class="w-full h-full object-cover rounded-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section
+      class="about-values-section py-20 bg-cafe-light/20 border-t border-b border-cafe-accent/15"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span
+          class="text-xs uppercase tracking-widest text-cafe-medium font-bold mb-3 block"
+          >Our Philosophy</span
+        >
+        <h2
+          class="text-3xl sm:text-5xl font-serif text-cafe-charcoal font-medium mb-16"
+        >
+          The Pillars of Cafe
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Value Card 1 -->
+          <div
+            class="about-value-card bg-white p-8 rounded-lg shadow-sm border border-cafe-accent/10 text-center hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-cafe-light/40 text-cafe-medium rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-7 h-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.75 9.75c0 .412-.016.822-.048 1.228A5.99 5.99 0 0 1 12 3c1.727 0 3.298.729 4.412 1.897-.563.364-1.11.83-1.616 1.4A4.5 4.5 0 0 0 9.75 9.75Z"
+                ></path>
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-serif text-cafe-charcoal font-semibold mb-4"
+            >
+              Craftsmanship
+            </h3>
+            <p class="text-sm text-cafe-text font-light leading-relaxed">
+              We brew coffee with scientific precision and artistic passion.
+              Every roast profile and pour weight is calibrated for exquisite
+              flavor.
+            </p>
+          </div>
+
+          <!-- Value Card 2 -->
+          <div
+            class="about-value-card bg-white p-8 rounded-lg shadow-sm border border-cafe-accent/10 text-center hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-cafe-light/40 text-cafe-medium rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-7 h-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m0 0-.003-.031a3 3 0 0 1-4.682-2.72 9.094 9.094 0 0 1 3.74-.479m11.196-3.07a3 3 0 0 0-4.682-2.72 6 6 0 0 0-11.197 2.72m11.196-3.07a3 3 0 0 1-4.68-2.72 6 6 0 0 1-11.198 2.72M12 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                ></path>
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-serif text-cafe-charcoal font-semibold mb-4"
+            >
+              Cozy Sanctuary
+            </h3>
+            <p class="text-sm text-cafe-text font-light leading-relaxed">
+              Our spaces are built to feel like home. Cozy chairs, calm natural
+              light, warm materials, and ambient soundtracks await your arrival.
+            </p>
+          </div>
+
+          <!-- Value Card 3 -->
+          <div
+            class="about-value-card bg-white p-8 rounded-lg shadow-sm border border-cafe-accent/10 text-center hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-cafe-light/40 text-cafe-medium rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-7 h-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v18M3 12h18"></path>
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-serif text-cafe-charcoal font-semibold mb-4"
+            >
+              Ethical Sourcing
+            </h3>
+            <p class="text-sm text-cafe-text font-light leading-relaxed">
+              We care about farmers and the planet. We pay premium prices
+              directly to farmers and buy fresh milk from nearby family-owned
+              dairies.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sourcing Breakdown -->
+    <section class="about-sourcing-section py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <span
+            class="text-xs uppercase tracking-widest text-[#8b3d1f] font-bold mb-3 block"
+            >From Farm to Cup</span
+          >
+          <h2
+            class="text-3xl sm:text-4xl font-serif text-cafe-charcoal font-medium"
+          >
+            Sourcing with integrity
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16">
+          <div
+            class="about-sourcing-box bg-cafe-light/10 p-8 rounded-lg border border-cafe-accent/10 text-left"
+          >
+            <h3 class="text-2xl font-serif text-cafe-medium mb-4 font-semibold">
+              Our Coffee Beans
+            </h3>
+            <p
+              class="text-sm sm:text-base text-cafe-text font-light leading-relaxed"
+            >
+              We build long-term relationships with farm cooperatives across
+              Colombia, Ethiopia, and Sumatra. By purchasing direct-trade, we
+              skip corporate intermediaries, ensuring coffee growers receive
+              fair pay, which in turn supports local agricultural economies.
+            </p>
+          </div>
+          <div
+            class="about-sourcing-box bg-cafe-light/10 p-8 rounded-lg border border-cafe-accent/10 text-left"
+          >
+            <h3 class="text-2xl font-serif text-cafe-medium mb-4 font-semibold">
+              Our Local Dairy
+            </h3>
+            <p
+              class="text-sm sm:text-base text-cafe-text font-light leading-relaxed"
+            >
+              Our milk, cream, and organic milk alternatives are sourced weekly
+              from small family farms located within 50 miles of our shop. This
+              guarantees absolute freshness and reduces carbon emissions,
+              maintaining a localized footprint.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  if (!prefersReducedMotion) {
+    // Header timelines
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+    tl.to(".about-header-tag", {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      startAt: { y: 20 },
+    })
+      .to(
+        ".about-header-title",
+        { opacity: 1, y: 0, duration: 1.2, startAt: { y: 30 } },
+        "-=1.0",
+      )
+      .to(
+        ".about-header-desc",
+        { opacity: 1, y: 0, duration: 1.2, startAt: { y: 20 } },
+        "-=1.0",
+      );
+
+    // Story animations
+    gsap.from(".about-story-content", {
+      scrollTrigger: { trigger: ".about-story-section", start: "top 75%" },
+      opacity: 0,
+      x: -40,
+      duration: 1.2,
+      ease: "power3.out",
+    });
+
+    gsap.from(".about-story-bg", {
+      scrollTrigger: { trigger: ".about-story-section", start: "top 75%" },
+      opacity: 0,
+      scale: 0.5,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    gsap.from(".about-story-img1", {
+      scrollTrigger: { trigger: ".about-story-section", start: "top 75%" },
+      opacity: 0,
+      xPercent: -15,
+      yPercent: -15,
+      duration: 1.4,
+      ease: "power3.out",
+    });
+
+    gsap.from(".about-story-img2", {
+      scrollTrigger: { trigger: ".about-story-section", start: "top 72%" },
+      opacity: 0,
+      xPercent: 15,
+      yPercent: 15,
+      duration: 1.4,
+      ease: "power3.out",
+    });
+
+    // Values staggering
+    gsap.from(".about-value-card", {
+      scrollTrigger: { trigger: ".about-values-section", start: "top 75%" },
+      opacity: 0,
+      y: 40,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    // Sourcing boxes stagger
+    gsap.from(".about-sourcing-box", {
+      scrollTrigger: { trigger: ".about-sourcing-section", start: "top 80%" },
+      opacity: 0,
+      y: 30,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power2.out",
+    });
+  } else {
+    gsap.set(".about-header-tag, .about-header-title, .about-header-desc", {
+      opacity: 1,
+    });
+  }
+</script>

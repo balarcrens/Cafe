@@ -1,13 +1,22 @@
 ---
+// Navbar.astro
+interface Props {
+  isHome?: boolean;
+}
 
+const { isHome = false } = Astro.props;
 ---
 
 <header
-  class="absolute top-0 left-0 right-0 z-50 transition-colors duration-300"
+  class={isHome 
+    ? "absolute top-0 left-0 right-0 z-50 py-6 transition-all duration-300"
+    : "fixed top-0 left-0 right-0 z-50 py-4 bg-cafe-dark shadow-md transition-all duration-300"
+  }
   id="navbar"
+  data-is-home={isHome ? "true" : "false"}
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-24">
+    <div class="flex items-center justify-between transition-all duration-300" id="navbar-container">
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-3 group">
         <!-- Coffee cup icon -->
@@ -31,38 +40,43 @@
           ></path>
         </svg>
         <span class="text-xl font-bold font-serif text-white tracking-wide"
-          >365 The Travel Cafe</span
+          >Cafe</span
         >
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-10">
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10">
         <a
-          href="#"
+          href="/"
           class="text-sm font-medium text-white/90 hover:text-white hover:underline underline-offset-4 decoration-2 decoration-cafe-accent transition-colors"
           >Home</a
         >
         <a
-          href="#about"
+          href="/aboutus"
           class="text-sm font-medium text-white/90 hover:text-white hover:underline underline-offset-4 decoration-2 decoration-cafe-accent transition-colors"
           >About Us</a
         >
         <a
-          href="#menu"
+          href="/menu"
           class="text-sm font-medium text-white/90 hover:text-white hover:underline underline-offset-4 decoration-2 decoration-cafe-accent transition-colors"
           >Menu</a
         >
         <a
-          href="#faq"
+          href="/faq"
           class="text-sm font-medium text-white/90 hover:text-white hover:underline underline-offset-4 decoration-2 decoration-cafe-accent transition-colors"
           >FAQ</a
+        >
+        <a
+          href="/contactus"
+          class="text-sm font-medium text-white/90 hover:text-white hover:underline underline-offset-4 decoration-2 decoration-cafe-accent transition-colors"
+          >Contact Us</a
         >
       </nav>
 
       <!-- CTA Button -->
       <div class="hidden md:block">
         <a
-          href="#booking"
+          href="/#booking"
           class="inline-flex items-center justify-center px-6 py-2.5 border border-white text-sm font-medium text-white hover:bg-white hover:text-cafe-charcoal rounded-sm transition-all duration-300"
         >
           Book a Table
@@ -106,40 +120,45 @@
   <!-- Mobile Menu Drawer (Off-screen / Hidden by default) -->
   <div
     id="mobile-menu-drawer"
-    class="hidden md:hidden fixed inset-0 z-40 bg-cafe-dark/95 backdrop-blur-md"
+    class="hidden md:hidden fixed inset-0 z-40 bg-cafe-dark/98 backdrop-blur-lg"
   >
-    <div class="flex flex-col h-full pt-24 pb-8 px-6 justify-between">
+    <div class="flex flex-col h-full pt-28 pb-8 px-6 justify-between">
       <nav class="flex flex-col space-y-6 text-center">
         <a
-          href="#"
+          href="/"
           class="mobile-link text-2xl font-serif text-white hover:text-cafe-accent transition-colors"
           >Home</a
         >
         <a
-          href="#about"
+          href="/aboutus"
           class="mobile-link text-2xl font-serif text-white hover:text-cafe-accent transition-colors"
           >About Us</a
         >
         <a
-          href="#menu"
+          href="/menu"
           class="mobile-link text-2xl font-serif text-white hover:text-cafe-accent transition-colors"
           >Menu</a
         >
         <a
-          href="#faq"
+          href="/faq"
           class="mobile-link text-2xl font-serif text-white hover:text-cafe-accent transition-colors"
           >FAQ</a
+        >
+        <a
+          href="/contactus"
+          class="mobile-link text-2xl font-serif text-white hover:text-cafe-accent transition-colors"
+          >Contact Us</a
         >
       </nav>
       <div class="flex flex-col items-center space-y-6">
         <a
-          href="#booking"
+          href="/#booking"
           class="mobile-link w-full text-center py-3 border border-white text-white font-medium rounded-sm hover:bg-white hover:text-cafe-dark transition-all duration-300"
         >
           Book a Table
         </a>
-        <span class="text-white/60 text-xs tracking-wider"
-          >365 The Travel Cafe &copy; 2026</span
+        <span class="text-white/60 text-xs tracking-wider font-sans"
+          >Cafe &copy; {new Date().getFullYear()}</span
         >
       </div>
     </div>
@@ -148,24 +167,40 @@
 
 <script>
   const nav = document.getElementById("navbar");
+  const isHome = nav?.getAttribute("data-is-home") === "true";
   const btn = document.getElementById("mobile-menu-button");
   const drawer = document.getElementById("mobile-menu-drawer");
   const openIcon = document.getElementById("menu-icon-open");
   const closeIcon = document.getElementById("menu-icon-close");
   const mobileLinks = document.querySelectorAll(".mobile-link");
 
-  // Sticky Navbar background change on scroll
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      nav?.classList.add("bg-cafe-dark/95", "backdrop-blur-md", "shadow-md");
-      nav?.classList.remove("absolute");
-      nav?.classList.add("fixed");
+  // Scroll handler
+  const handleScroll = () => {
+    if (isHome) {
+      if (window.scrollY > 50) {
+        nav?.classList.add("bg-cafe-dark/95", "backdrop-blur-md", "shadow-md", "py-3");
+        nav?.classList.remove("py-6", "absolute");
+        nav?.classList.add("fixed");
+      } else {
+        nav?.classList.remove("bg-cafe-dark/95", "backdrop-blur-md", "shadow-md", "py-3");
+        nav?.classList.add("py-6", "absolute");
+        nav?.classList.remove("fixed");
+      }
     } else {
-      nav?.classList.remove("bg-cafe-dark/95", "backdrop-blur-md", "shadow-md");
-      nav?.classList.remove("fixed");
-      nav?.classList.add("absolute");
+      // Subpages: always fixed, shrink from py-4 to py-3 on scroll
+      if (window.scrollY > 50) {
+        nav?.classList.add("py-3");
+        nav?.classList.remove("py-4");
+      } else {
+        nav?.classList.add("py-4");
+        nav?.classList.remove("py-3");
+      }
     }
-  });
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  // Initial check in case page starts scrolled down
+  handleScroll();
 
   // Mobile Menu Toggle
   function toggleMenu() {
@@ -176,11 +211,15 @@
       document.body.classList.add("overflow-hidden");
       openIcon?.classList.add("hidden");
       closeIcon?.classList.remove("hidden");
+      nav?.classList.add("bg-cafe-dark/98");
     } else {
       drawer?.classList.add("hidden");
       document.body.classList.remove("overflow-hidden");
       openIcon?.classList.remove("hidden");
       closeIcon?.classList.add("hidden");
+      if (isHome && window.scrollY <= 50) {
+        nav?.classList.remove("bg-cafe-dark/98");
+      }
     }
   }
 
@@ -193,6 +232,9 @@
       document.body.classList.remove("overflow-hidden");
       openIcon?.classList.remove("hidden");
       closeIcon?.classList.add("hidden");
+      if (isHome && window.scrollY <= 50) {
+        nav?.classList.remove("bg-cafe-dark/98");
+      }
     });
   });
 </script>

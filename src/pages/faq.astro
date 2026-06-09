@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    category: 'Reservations',
+    questions: [
+      { q: 'Is there a fee to reserve a table?', a: 'No, table reservations at Cafe are completely free! We recommend booking in advance, especially for weekend mornings and evenings, to guarantee your preferred seating.' },
+      { q: 'How far in advance can I book?', a: 'You can book a table up to 30 days in advance through our online reservation form. For larger events or corporate gatherings, please get in touch via our Contact page.' },
+      { q: 'Can I modify or cancel my reservation?', a: 'Yes. Simply click the link in your confirmation email, or contact us directly at least 1 hour before your scheduled time so we can accommodate other guests.' }
+    ]
+  },
+  {
+    category: 'Coffee & Sourcing',
+    questions: [
+      { q: 'Where do your coffee beans come from?', a: 'We source single-origin arabica beans from micro-lot farms in Colombia, Ethiopia, and Sumatra. We practice direct trade, ensuring coffee growers are paid fair wages directly.' },
+      { q: 'What kind of milk alternatives do you offer?', a: 'We offer fresh dairy milk sourced from nearby local family farms, as well as organic oat, almond, and soy milk alternatives for all espresso beverages.' },
+      { q: 'Do you roast your own coffee beans?', a: 'We partner with a local specialty micro-roaster who roasts our custom signature blends weekly to guarantee peak freshness and distinct flavor profiles.' }
+    ]
+  },
+  {
+    category: 'General Questions',
+    questions: [
+      { q: 'Do you have free Wi-Fi and work spaces?', a: 'Yes! We offer high-speed fiber Wi-Fi and have plenty of dedicated power outlets. We invite remote workers and creatives to write, code, or read in our cozy sanctuary.' },
+      { q: 'Are dogs allowed inside the cafe?', a: 'We welcome well-behaved pets in our cozy outdoor patio seating area. However, only registered service animals are permitted inside the main dining room.' }
+    ]
+  }
+];
+---
+
+<Layout title="FAQ - Cafe" description="Find answers to common questions about table reservations, opening hours, coffee sourcing, dairy farm partnerships, and dietary options.">
+  <Navbar />
+
+  <main class="flex-grow pt-18">
+    <!-- Header Banner -->
+    <section class="faq-header relative bg-cafe-charcoal py-20 text-white text-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-cafe-dark/25 to-cafe-charcoal/90 z-0"></div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+        <span class="faq-header-tag opacity-0 text-xs uppercase tracking-widest text-cafe-accent font-bold mb-3 block">Common Inquiries</span>
+        <h1 class="faq-header-title opacity-0 text-4xl sm:text-6xl font-serif text-white mb-6">Frequently Asked Questions</h1>
+        <p class="faq-header-desc opacity-0 text-base sm:text-lg text-white/80 font-sans font-light max-w-xl mx-auto leading-relaxed">
+          Need details about booking, our ingredients, or workspaces? We've compiled answers below.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Accordions Group -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        <div class="space-y-16">
+          {faqs.map(group => (
+            <div class="faq-group">
+              <!-- Group Title -->
+              <h2 class="faq-group-title text-2xl font-serif text-cafe-charcoal font-semibold border-b border-cafe-accent/20 pb-3 mb-6">
+                {group.category}
+              </h2>
+              
+              <!-- Accordions -->
+              <div class="space-y-4">
+                {group.questions.map(item => (
+                  <div class="faq-accordion border border-cafe-accent/20 rounded-md overflow-hidden bg-white hover:border-cafe-accent/60 transition-colors">
+                    
+                    <!-- Accordion Trigger Header -->
+                    <button class="faq-trigger w-full flex items-center justify-between p-5 text-left font-serif text-lg text-cafe-charcoal font-semibold hover:bg-cafe-light/10 transition-colors focus:outline-none cursor-pointer">
+                      <span>{item.q}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-5 w-5 text-cafe-accent flex-shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </button>
+
+                    <!-- Accordion Collapsible Content -->
+                    <div class="faq-content h-0 opacity-0 overflow-hidden bg-cafe-light/5">
+                      <div class="p-5 pt-0 text-sm sm:text-base font-sans text-cafe-text font-light leading-relaxed border-t border-cafe-accent/5">
+                        {item.a}
+                      </div>
+                    </div>
+
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Support Help CTA Banner -->
+    <section class="bg-cafe-light/20 py-16 border-t border-b border-cafe-accent/15 text-center">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-2xl sm:text-3xl font-serif text-cafe-charcoal mb-4 font-normal">Still have questions?</h2>
+        <p class="text-sm text-cafe-text font-light mb-8 max-w-md mx-auto leading-relaxed">
+          Drop us a line and our friendly team will get back to you with all the answers you need!
+        </p>
+        <a 
+          href="/contactus" 
+          class="inline-flex items-center justify-center px-8 py-3.5 bg-cafe-dark hover:bg-cafe-medium text-white text-sm font-semibold tracking-wider uppercase rounded-sm shadow-md hover:shadow-lg transition-all duration-300"
+        >
+          Contact Us
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Header Reveal Timeline
+  if (!prefersReducedMotion) {
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+    tl.to(".faq-header-tag", { opacity: 1, y: 0, duration: 1.2, startAt: { y: 20 } })
+      .to(".faq-header-title", { opacity: 1, y: 0, duration: 1.2, startAt: { y: 30 } }, "-=1.0")
+      .to(".faq-header-desc", { opacity: 1, y: 0, duration: 1.2, startAt: { y: 20 } }, "-=1.0");
+
+    // Scroll trigger grouping reveal
+    gsap.from(".faq-group", {
+      scrollTrigger: {
+        trigger: ".faq-group",
+        start: "top 85%"
+      },
+      opacity: 0,
+      y: 30,
+      stagger: 0.15,
+      duration: 1,
+      ease: "power2.out"
+    });
+  } else {
+    gsap.set(".faq-header-tag, .faq-header-title, .faq-header-desc", { opacity: 1 });
+  }
+
+  // Accordion Logic
+  const accordions = document.querySelectorAll('.faq-accordion');
+
+  accordions.forEach(acc => {
+    const trigger = acc.querySelector('.faq-trigger');
+    const content = acc.querySelector('.faq-content') as HTMLDivElement;
+    const icon = acc.querySelector('.faq-icon');
+
+    trigger?.addEventListener('click', () => {
+      const isOpen = acc.classList.contains('is-open');
+
+      // Close all other accordions first for clean Accordion UX
+      accordions.forEach(otherAcc => {
+        if (otherAcc !== acc && otherAcc.classList.contains('is-open')) {
+          otherAcc.classList.remove('is-open');
+          const otherContent = otherAcc.querySelector('.faq-content') as HTMLDivElement;
+          const otherIcon = otherAcc.querySelector('.faq-icon');
+          if (prefersReducedMotion) {
+            otherContent.style.height = '0';
+            otherContent.style.opacity = '0';
+          } else {
+            gsap.to(otherContent, { height: 0, opacity: 0, duration: 0.3, ease: "power2.inOut" });
+            gsap.to(otherIcon, { rotation: 0, duration: 0.3, ease: "power2.inOut" });
+          }
+        }
+      });
+
+      if (isOpen) {
+        acc.classList.remove('is-open');
+        if (prefersReducedMotion) {
+          content.style.height = '0';
+          content.style.opacity = '0';
+        } else {
+          gsap.to(content, { height: 0, opacity: 0, duration: 0.3, ease: "power2.inOut" });
+          gsap.to(icon, { rotation: 0, duration: 0.3, ease: "power2.inOut" });
+        }
+      } else {
+        acc.classList.add('is-open');
+        if (prefersReducedMotion) {
+          content.style.height = 'auto';
+          content.style.opacity = '1';
+        } else {
+          // Temporarily set to auto to query natural height
+          gsap.set(content, { height: "auto", opacity: 1 });
+          const targetHeight = content.scrollHeight;
+          
+          // Animate height from 0 to targetHeight
+          gsap.fromTo(content, 
+            { height: 0, opacity: 0 },
+            { height: targetHeight, opacity: 1, duration: 0.4, ease: "power3.out" }
+          );
+          gsap.to(icon, { rotation: 180, duration: 0.3, ease: "power2.out" });
+        }
+      }
+    });
+  });
+</script>

@@ -1,41 +1,59 @@
 ---
-import { Image } from 'astro:assets';
-import heroBg from '../assets/hero_background.png';
+import { Image } from "astro:assets";
+import heroBg from "../assets/hero_background.png";
 ---
 
-<section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
-  <!-- Optimized Background Image -->
-  <div class="absolute inset-0 z-0">
-    <Image 
-      src={heroBg} 
-      alt="Freshly baked croissant and warm caffe latte art on a cozy dark wooden tabletop" 
-      class="w-full h-full object-cover" 
-      quality="max"
-      loading="eager"
-    />
+<section
+  class="hero-section relative min-h-screen flex items-center justify-center pt-18 overflow-hidden"
+>
+  <!-- Optimized Background Image with Parallax wrapper -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <div class="hero-bg-container w-full h-full">
+      <Image
+        src={heroBg}
+        alt="Freshly baked croissant and warm caffe latte art on a cozy dark wooden tabletop"
+        class="hero-bg-img w-full h-full object-cover will-change-transform"
+        quality="max"
+        loading="eager"
+      />
+    </div>
     <!-- Deep gradient overlay for premium readability -->
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-cafe-charcoal/85 via-cafe-charcoal/60 to-transparent z-1"
+    >
+    </div>
+    <div class="absolute inset-0 bg-black/20 z-1"></div>
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left w-full pt-16 pb-20 sm:pb-28">
+  <div
+    class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left w-full pt-16 pb-20 sm:pb-28"
+  >
     <div class="max-w-3xl">
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif text-white font-normal leading-[1.15] mb-6 tracking-wide drop-shadow-sm">
+      <h1
+        class="hero-title opacity-0 text-4xl sm:text-6xl lg:text-7xl font-serif text-white font-normal leading-[1.15] mb-6 tracking-wide drop-shadow-md gpu-accelerate"
+      >
         Your neighborhood sanctuary for exquisite coffee
       </h1>
-      <p class="text-lg sm:text-xl font-sans text-white/80 font-light tracking-wide mb-10 max-w-xl">
-        Enjoy expertly crafted beverages. Find peaceful vibes, good company, and freshly brewed perfection every single day.
+      <p
+        class="hero-desc opacity-0 text-lg sm:text-xl font-sans text-white/85 font-light tracking-wide mb-10 max-w-xl leading-relaxed gpu-accelerate"
+      >
+        Enjoy expertly crafted beverages. Find peaceful vibes, good company, and
+        freshly brewed perfection every single day.
       </p>
-      
+
       <!-- CTA Buttons -->
-      <div class="flex flex-wrap gap-4">
-        <a 
-          href="#menu" 
+      <div
+        class="hero-btn-container opacity-0 flex flex-wrap gap-4 gpu-accelerate"
+      >
+        <a
+          href="/menu"
           class="inline-flex items-center justify-center px-8 py-3.5 bg-cafe-medium hover:bg-cafe-dark text-white text-sm font-semibold tracking-wider uppercase rounded-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
         >
           Full Menu
         </a>
-        <a 
-          href="#about" 
+        <a
+          href="/aboutus"
           class="inline-flex items-center justify-center px-8 py-3.5 bg-cafe-accent hover:bg-cafe-light text-cafe-charcoal hover:text-cafe-dark text-sm font-semibold tracking-wider uppercase rounded-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
         >
           More Info
@@ -44,3 +62,62 @@ import heroBg from '../assets/hero_background.png';
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  if (!prefersReducedMotion) {
+    // Initial reveal animation on load
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    tl.to(".hero-title", {
+      opacity: 1,
+      y: 0,
+      duration: 1.5,
+      startAt: { y: 40 },
+    })
+      .to(
+        ".hero-desc",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          startAt: { y: 25 },
+        },
+        "-=1.1",
+      )
+      .to(
+        ".hero-btn-container",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          startAt: { y: 15 },
+        },
+        "-=0.9",
+      );
+
+    // Parallax background scale on scroll
+    gsap.to(".hero-bg-img", {
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.2,
+      },
+      scale: 1.15,
+      yPercent: 8,
+      ease: "none",
+    });
+  } else {
+    // If reduced motion is preferred, just show them immediately
+    gsap.set(".hero-title, .hero-desc, .hero-btn-container", { opacity: 1 });
+  }
+</script>
