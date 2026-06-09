@@ -1,0 +1,520 @@
+---
+// GoogleReviews.astro
+---
+
+<section
+  id="reviews"
+  class="reviews-section py-24 bg-cafe-light/25 scroll-mt-12 overflow-hidden border-t border-b border-cafe-accent/15"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Top Row: Title & Arrow Controls -->
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+    >
+      <div class="text-left">
+        <span
+          class="reviews-title text-xs uppercase tracking-widest text-cafe-medium font-bold mb-3 block"
+          >Google Reviews</span
+        >
+        <h2
+          class="reviews-heading text-3xl sm:text-[40px] font-serif text-cafe-charcoal font-semibold leading-tight mb-4"
+        >
+          What our customers say
+        </h2>
+
+        <!-- Google Summary Rating -->
+        <div class="flex flex-wrap items-center gap-3 mt-2 reviews-rating">
+          <!-- Google G Logo -->
+          <div
+            class="flex items-center space-x-1.5 bg-white px-3 py-1 rounded-md border border-cafe-accent/25 shadow-[0_1px_3px_rgba(34,14,6,0.05)]"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24">
+              <path
+                fill="#EA4335"
+                d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.529-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.253-3.13C18.427 1.83 15.617.97 12.24.97c-6.16 0-11.16 5-11.16 11.16s5 11.16 11.16 11.16c6.43 0 10.71-4.51 10.71-10.9 0-.74-.08-1.3-.17-1.86H12.24Z"
+              ></path>
+            </svg>
+            <span class="text-xs font-semibold text-cafe-charcoal font-sans"
+              >Google</span
+            >
+          </div>
+          <!-- 5 Stars -->
+          <div class="flex text-amber-500">
+            {
+              Array.from({ length: 5 }).map(() => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4.5 h-4.5 fill-current"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))
+            }
+          </div>
+          <!-- Text -->
+          <span class="text-sm text-cafe-text">
+            <strong>4.9 / 5.0</strong> based on 342 reviews
+          </span>
+        </div>
+      </div>
+
+      <!-- Arrow Controls -->
+      <div class="flex items-center space-x-3 reviews-controls">
+        <button
+          id="reviews-prev"
+          class="w-12 h-12 rounded-full border border-cafe-medium text-cafe-medium hover:bg-cafe-medium hover:text-white flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:border-cafe-accent/30 disabled:text-cafe-accent/50 disabled:cursor-not-allowed disabled:pointer-events-none cursor-pointer"
+          aria-label="Previous review"
+          disabled
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+          </svg>
+        </button>
+        <button
+          id="reviews-next"
+          class="w-12 h-12 rounded-full border border-cafe-medium text-cafe-medium hover:bg-cafe-medium hover:text-white flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:border-cafe-accent/30 disabled:text-cafe-accent/50 disabled:cursor-not-allowed disabled:pointer-events-none cursor-pointer"
+          aria-label="Next review"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Reviews Scroll Container -->
+    <div
+      id="reviews-scroll-container"
+      class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none py-4 -mx-4 px-[7.5vw] sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+    >
+      <!-- Review 1 -->
+      <div
+        class="review-card flex-shrink-0 w-[85vw] sm:w-[380px] bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-cafe-accent/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300 snap-center md:snap-start flex flex-col justify-between relative"
+      >
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center space-x-3.5">
+              <!-- Avatar Circle with Gradient -->
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-tr from-cafe-dark to-cafe-accent flex items-center justify-center text-white font-bold text-sm font-sans shadow-inner"
+              >
+                MC
+              </div>
+              <div class="text-left">
+                <div class="flex items-center space-x-1.5">
+                  <h4
+                    class="font-serif font-semibold text-cafe-charcoal text-base"
+                  >
+                    Marcus Chen
+                  </h4>
+                  <!-- Verified Google reviewer badge -->
+                  <svg
+                    class="w-4 h-4 text-emerald-600"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-xs text-cafe-text/60 font-sans">
+                  Local Guide &bull; 18 reviews
+                </p>
+              </div>
+            </div>
+            <!-- Google G logo background icon -->
+            <svg
+              class="w-5 h-5 opacity-40 text-cafe-accent/70"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.529-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.253-3.13C18.427 1.83 15.617.97 12.24.97c-6.16 0-11.16 5-11.16 11.16s5 11.16 11.16 11.16c6.43 0 10.71-4.51 10.71-10.9 0-.74-.08-1.3-.17-1.86H12.24Z"
+              ></path>
+            </svg>
+          </div>
+
+          <!-- Stars -->
+          <div class="flex text-amber-500 mb-3.5">
+            {
+              Array.from({ length: 5 }).map(() => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 fill-current mr-0.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))
+            }
+          </div>
+
+          <!-- Review Body -->
+          <p
+            class="text-sm font-sans font-light leading-relaxed text-cafe-text text-left"
+          >
+            "Cafe has quickly become my favorite neighborhood sanctuary. The
+            single-origin pour-over is meticulously brewed, releasing incredibly
+            rich floral notes. The staff is warm and extremely knowledgeable
+            about their craft. Perfect place to relax or read a book."
+          </p>
+        </div>
+
+        <!-- Date / Stamp -->
+        <span
+          class="text-xs text-cafe-text/40 font-sans tracking-wide text-left mt-6 block"
+          >Reviewed 4 days ago</span
+        >
+      </div>
+
+      <!-- Review 2 -->
+      <div
+        class="review-card flex-shrink-0 w-[85vw] sm:w-[380px] bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-cafe-accent/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300 snap-center md:snap-start flex flex-col justify-between relative"
+      >
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center space-x-3.5">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-tr from-cafe-dark to-cafe-accent flex items-center justify-center text-white font-bold text-sm font-sans shadow-inner"
+              >
+                SV
+              </div>
+              <div class="text-left">
+                <h4
+                  class="font-serif font-semibold text-cafe-charcoal text-base"
+                >
+                  Sophia Vance
+                </h4>
+                <p class="text-xs text-cafe-text/60 font-sans">
+                  Verified Customer
+                </p>
+              </div>
+            </div>
+            <svg
+              class="w-5 h-5 opacity-40 text-cafe-accent/70"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.529-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.253-3.13C18.427 1.83 15.617.97 12.24.97c-6.16 0-11.16 5-11.16 11.16s5 11.16 11.16 11.16c6.43 0 10.71-4.51 10.71-10.9 0-.74-.08-1.3-.17-1.86H12.24Z"
+              ></path>
+            </svg>
+          </div>
+
+          <div class="flex text-amber-500 mb-3.5">
+            {
+              Array.from({ length: 5 }).map(() => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 fill-current mr-0.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))
+            }
+          </div>
+
+          <p
+            class="text-sm font-sans font-light leading-relaxed text-cafe-text text-left"
+          >
+            "Everything about Cafe is pure perfection. I had a flat white and
+            their sourdough almond croissant. The espresso extraction was
+            balanced and rich, and the milk texture was silky smooth. The cozy
+            velvet chairs and abundance of plants make it so welcoming."
+          </p>
+        </div>
+
+        <span
+          class="text-xs text-cafe-text/40 font-sans tracking-wide text-left mt-6 block"
+          >Reviewed 1 week ago</span
+        >
+      </div>
+
+      <!-- Review 3 -->
+      <div
+        class="review-card flex-shrink-0 w-[85vw] sm:w-[380px] bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-cafe-accent/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300 snap-center md:snap-start flex flex-col justify-between relative"
+      >
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center space-x-3.5">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-tr from-cafe-dark to-cafe-accent flex items-center justify-center text-white font-bold text-sm font-sans shadow-inner"
+              >
+                ER
+              </div>
+              <div class="text-left">
+                <h4
+                  class="font-serif font-semibold text-cafe-charcoal text-base"
+                >
+                  Elena Rostova
+                </h4>
+                <p class="text-xs text-cafe-text/60 font-sans">
+                  Remote Professional
+                </p>
+              </div>
+            </div>
+            <svg
+              class="w-5 h-5 opacity-40 text-cafe-accent/70"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.529-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.253-3.13C18.427 1.83 15.617.97 12.24.97c-6.16 0-11.16 5-11.16 11.16s5 11.16 11.16 11.16c6.43 0 10.71-4.51 10.71-10.9 0-.74-.08-1.3-.17-1.86H12.24Z"
+              ></path>
+            </svg>
+          </div>
+
+          <div class="flex text-amber-500 mb-3.5">
+            {
+              Array.from({ length: 5 }).map(() => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 fill-current mr-0.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))
+            }
+          </div>
+
+          <p
+            class="text-sm font-sans font-light leading-relaxed text-cafe-text text-left"
+          >
+            "A absolute gem of a workspace. The ambient music is calm, the
+            high-speed fiber internet is incredibly stable, and the power
+            outlets are located under almost every single table. Their signature
+            vanilla bean latte and matcha are both fantastic."
+          </p>
+        </div>
+
+        <span
+          class="text-xs text-cafe-text/40 font-sans tracking-wide text-left mt-6 block"
+          >Reviewed 2 weeks ago</span
+        >
+      </div>
+
+      <!-- Review 4 -->
+      <div
+        class="review-card flex-shrink-0 w-[85vw] sm:w-[380px] bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-cafe-accent/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300 snap-center md:snap-start flex flex-col justify-between relative"
+      >
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center space-x-3.5">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-tr from-cafe-dark to-cafe-accent flex items-center justify-center text-white font-bold text-sm font-sans shadow-inner"
+              >
+                LS
+              </div>
+              <div class="text-left">
+                <h4
+                  class="font-serif font-semibold text-cafe-charcoal text-base"
+                >
+                  Liam Sterling
+                </h4>
+                <p class="text-xs text-cafe-text/60 font-sans">
+                  Verified Customer
+                </p>
+              </div>
+            </div>
+            <svg
+              class="w-5 h-5 opacity-40 text-cafe-accent/70"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.529-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.253-3.13C18.427 1.83 15.617.97 12.24.97c-6.16 0-11.16 5-11.16 11.16s5 11.16 11.16 11.16c6.43 0 10.71-4.51 10.71-10.9 0-.74-.08-1.3-.17-1.86H12.24Z"
+              ></path>
+            </svg>
+          </div>
+
+          <div class="flex text-amber-500 mb-3.5">
+            {
+              Array.from({ length: 5 }).map(() => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 fill-current mr-0.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))
+            }
+          </div>
+
+          <p
+            class="text-sm font-sans font-light leading-relaxed text-cafe-text text-left"
+          >
+            "We brought our family here for Sunday brunch. The warmth of the
+            hospitality makes you feel like an old friend. The children devoured
+            the organic hot cocoas, and their avocado toast with poached eggs
+            was outstandingly fresh. Highly recommended!"
+          </p>
+        </div>
+
+        <span
+          class="text-xs text-cafe-text/40 font-sans tracking-wide text-left mt-6 block"
+          >Reviewed 3 weeks ago</span
+        >
+      </div>
+
+      <!-- Review 5 -->
+      <div
+        class="review-card flex-shrink-0 w-[85vw] sm:w-[380px] bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-cafe-accent/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300 snap-center md:snap-start flex flex-col justify-between relative"
+      >
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center space-x-3.5">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-tr from-cafe-dark to-cafe-accent flex items-center justify-center text-white font-bold text-sm font-sans shadow-inner"
+              >
+                DC
+              </div>
+              <div class="text-left">
+                <div class="flex items-center space-x-1.5">
+                  <h4
+                    class="font-serif font-semibold text-cafe-charcoal text-base"
+                  >
+                    Devon Cole
+                  </h4>
+                  <svg
+                    class="w-4 h-4 text-emerald-600"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-xs text-cafe-text/60 font-sans">
+                  Local Guide &bull; 42 reviews
+                </p>
+              </div>
+            </div>
+            <svg
+              class="w-5 h-5 opacity-40 text-cafe-accent/70"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.529-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.253-3.13C18.427 1.83 15.617.97 12.24.97c-6.16 0-11.16 5-11.16 11.16s5 11.16 11.16 11.16c6.43 0 10.71-4.51 10.71-10.9 0-.74-.08-1.3-.17-1.86H12.24Z"
+              ></path>
+            </svg>
+          </div>
+
+          <div class="flex text-amber-500 mb-3.5">
+            {
+              Array.from({ length: 5 }).map(() => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 fill-current mr-0.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))
+            }
+          </div>
+
+          <p
+            class="text-sm font-sans font-light leading-relaxed text-cafe-text text-left"
+          >
+            "As an amateur barista, I'm incredibly picky about espresso. Cafe's
+            consistency is amazing. Clean, sweet crema, no bitter notes, and
+            milk texture microfoamed to absolute perfection. Their commitment to
+            ethical, direct-trade sourcing shines through."
+          </p>
+        </div>
+
+        <span
+          class="text-xs text-cafe-text/40 font-sans tracking-wide text-left mt-6 block"
+          >Reviewed 1 month ago</span
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-none {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+</style>
+
+<script>
+  // Scroll Container arrow controls
+  const container = document.getElementById("reviews-scroll-container");
+  const prevBtn = document.getElementById("reviews-prev") as HTMLButtonElement;
+  const nextBtn = document.getElementById("reviews-next") as HTMLButtonElement;
+
+  function updateButtons() {
+    if (!container || !prevBtn || !nextBtn) return;
+
+    const scrollLeft = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+
+    // Use a tolerance threshold of 5px for minor calculations/rounding issues
+    prevBtn.disabled = scrollLeft <= 5;
+    nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 5;
+  }
+
+  if (container && prevBtn && nextBtn) {
+    // Scroll handlers
+    nextBtn.addEventListener("click", () => {
+      const card = container.querySelector(".review-card");
+      if (card) {
+        const cardWidth = card.getBoundingClientRect().width;
+        // gap-6 is 24px in Tailwind CSS
+        container.scrollBy({ left: cardWidth + 24, behavior: "smooth" });
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      const card = container.querySelector(".review-card");
+      if (card) {
+        const cardWidth = card.getBoundingClientRect().width;
+        container.scrollBy({ left: -(cardWidth + 24), behavior: "smooth" });
+      }
+    });
+
+    // Listen to scroll to update button state
+    container.addEventListener("scroll", updateButtons, { passive: true });
+
+    // Run initially
+    updateButtons();
+
+    // Also run on window resize
+    window.addEventListener("resize", updateButtons, { passive: true });
+  }
+</script>
